@@ -1,2 +1,2 @@
 # notes
-My notes about everything, mostly about linux.
+My notes about everything, mostly linux. There should be regular updates. 
