@@ -3,6 +3,4 @@ This file will gather all of the information I like to know when ricing my deskt
 
 ## Obconf
 - can be executed in terminal as:
--     ```
--     obconf
--     ```
+  ``` $ obconf ```
