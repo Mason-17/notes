@@ -12,3 +12,5 @@ The method of installation will be a section, and the commands listed in the ord
 - Then enter this to download the archfi script: ```curl -LO archfi.sf.net/archfi```
 
 - Launch the script: `sh archfi`
+
+- Go through the steps it asks you to. Customize as you wish.
