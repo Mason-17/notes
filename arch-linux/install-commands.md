@@ -8,3 +8,7 @@ To get started, if you already have internet, enter ```$ curl -LO archfi.sf.net/
 
 To get internet (such as if you use wifi), enter "iwctl" into the terminal:
   ```$ iwctl```
+
+Once in the new prompt, use the following to connect to your wifi network: ```[iwctl]# station (device) connect (Wifi SSID)```
+
+If your wifi requires a passphrase, it will ask you for it.
