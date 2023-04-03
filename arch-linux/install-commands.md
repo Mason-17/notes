@@ -5,8 +5,10 @@ The method of installation will be a section, and the commands listed in the ord
 ## archfi/archdi
 
 - If you haven't already, set up internet. For wired connections, you should be good to go. For wireless networks, launch iwd: ```iwctl```
-  - once in the iwd program, use the following to connect to your network: ```station (device, usually wlan0) connect (wifi ssid)
+  - once in the iwd program, use the following to connect to your network: ```station (device, usually wlan0) connect (wifi ssid)```
 
 - Now that you have internet, execute the following to get the latest package database: ```sudo pacman -Sy```
 
 - Then enter this to download the archfi script: ```curl -LO archfi.sf.net/archfi```
+
+- Launch the script: `sh archfi`
