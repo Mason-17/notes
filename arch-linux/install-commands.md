@@ -4,4 +4,7 @@ The method of installation will be a section, and the commands listed in the ord
 
 ## archfi/archdi
 
-To get started, if you already have internet, enter ```wget -LO archfi.sf.net/archfi```
+To get started, if you already have internet, enter ```$ curl -LO archfi.sf.net/archfi```
+
+To get internet (such as if you use wifi), enter "iwctl" into the terminal:
+  ```$ iwctl```
