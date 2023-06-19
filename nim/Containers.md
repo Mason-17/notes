@@ -40,22 +40,29 @@ This produces an error because n is declared using let — its value is not 
 Sequences
 Sequences are containers similar to arrays, but their length doesn’t have to be known at compile time, and it can change during runtime: we declare only the type of the contained elements with seq[<type>]. Sequences are also homogeneous, i.e. every element in a sequence has to be the same type.
 
-The elements of a sequence are enclosed between @[ and ].
+The elements of a sequence are enclosed between `@[ and ]`.
 
+```
 var
   e1: seq[int] = @[]   
   f = @["abc", "def"]  
+```
+
 The type of an empty sequence must be declared.
 The type of a non-empty sequence can be inferred. In this case, it is a sequence containing strings.
 Another way to initialize an empty sequence is to call the newSeq procedure. We’ll look more at procedure calls in the next chapter but for now just know that this is also a possibility:
 
+```
 var
   e = newSeq[int]() 
+```
+
 Providing the type parameter inside of square brackets allows the procedure to know that it shall return a sequence of a certain type.
-A frequent error is omission of the final (), which must be included.
+A frequent error is omission of the final `()`, which must be included.
 We can add new elements to a sequence with the add function, similar to how we did with strings. For this to work the sequence must be mutable (defined with var), and the element we’re adding must be of the same type as the elements in the sequence.
 
 seq.nim
+```
 var
   g = @['x', 'y']
   h = @['1', '2', '3']
@@ -69,24 +76,33 @@ Adding a new element of the same type (char).
 Adding another sequence containing the same type.
 @['x', 'y', 'z']
 @['1', '2', '3', 'x', 'y', 'z']
+```
+
 Trying to pass different types to the existing sequences will produce an error:
 
+```
 var i = @[9, 8, 7]
 
-i.add(9.81) # error 
-g.add(i)    # error 
-Trying to add a float to a sequence of int.
-Trying to add a sequence of int to a sequence of char.
+i.add(9.81) # error 1
+g.add(i)    # error 2
+```
+
+Error 1: Trying to add a float to a sequence of int.
+Error 2: Trying to add a sequence of int to a sequence of char.
+
 Since sequences can vary in length we need a way to get their length, for this we can use the len function.
 
+```
 var i = @[9, 8, 7]
 echo i.len
 
 i.add(6)
 echo i.len
+```
+
 3
 4
-Indexing and slicing
+# Indexing and slicing
 Indexing allows us to get a specific element from a container by its index. Think of the index as a position inside of the container.
 
 Nim, like many other programming languages, has zero-based indexing, meaning that the first element in a container has the index zero, the second element has the index one, etc.
@@ -96,12 +112,15 @@ If we want to index "from the back", it is done by using the ^ prefix. The last 
 The syntax for indexing is <container>[<index>].
 
 indexing.nim
+```
 let j = ['a', 'b', 'c', 'd', 'e']
 
 echo j[1]   
 echo j[^1]  
 Zero-based indexing: the element at index 1 is b.
 Getting the last element.
+```
+
 b
 e
  
