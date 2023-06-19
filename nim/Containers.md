@@ -1,0 +1,158 @@
+# Containers
+Containers are data types which contain a collection of items and allow us to access those elements. Typically a container is also iterable, meaning that we can use them the same way we used strings in the loops chapter.
+
+For example, a grocery list is a container of items we want to buy, and a list of primes is a container of numbers. Written in pseudocode:
+
+```
+
+groceryList = [ham, eggs, bread, apples]
+primes = [1, 2, 3, 5, 7]
+```
+
+Arrays
+An array is the simplest container type. Arrays are homogeneous, i.e. all elements in an array must have the same type. Arrays are also of a constant size, meaning that the amount of elements (or rather: the amount of possible elements), must be known at compile-time. This means that we call arrays a "homogeneous container of a constant length".
+
+The array type is declared using array[<length>, <type>], where length is the total capacity of the array (number of elements it can fit), and type is a type of all its elements. The declaration can be omitted if both length and type can be inferred from the passed elements.
+
+The elements of an array are enclosed inside of square brackets.
+
+var
+  a: array[3, int] = [5, 7, 9]
+  b = [5, 7, 9]        
+  c = []  # error      
+  d: array[7, string]  
+If we provide the values, the length and type of array b are known at compile time. Although correct, there is no need to specifically declare it like array a.
+Neither the length nor the type of the elements can be inferred from this kind of declaration — this produces an error.
+The correct way to declare an empty array (which will be filled later) is to give its length and type, without providing the values of its elements — array d can contain seven strings.
+Since the length of an array has to be known at compile-time, this will not work:
+
+const m = 3
+let n = 5
+
+var a: array[m, char]
+var b: array[n, char] # error 
+This produces an error because n is declared using let — its value is not known at compile time. We can only use values declared with const as a length parameter for an array initialization.
+Sequences
+Sequences are containers similar to arrays, but their length doesn’t have to be known at compile time, and it can change during runtime: we declare only the type of the contained elements with seq[<type>]. Sequences are also homogeneous, i.e. every element in a sequence has to be the same type.
+
+The elements of a sequence are enclosed between @[ and ].
+
+var
+  e1: seq[int] = @[]   
+  f = @["abc", "def"]  
+The type of an empty sequence must be declared.
+The type of a non-empty sequence can be inferred. In this case, it is a sequence containing strings.
+Another way to initialize an empty sequence is to call the newSeq procedure. We’ll look more at procedure calls in the next chapter but for now just know that this is also a possibility:
+
+var
+  e = newSeq[int]() 
+Providing the type parameter inside of square brackets allows the procedure to know that it shall return a sequence of a certain type.
+A frequent error is omission of the final (), which must be included.
+We can add new elements to a sequence with the add function, similar to how we did with strings. For this to work the sequence must be mutable (defined with var), and the element we’re adding must be of the same type as the elements in the sequence.
+
+seq.nim
+var
+  g = @['x', 'y']
+  h = @['1', '2', '3']
+
+g.add('z')  
+echo g
+
+h.add(g)    
+echo h
+Adding a new element of the same type (char).
+Adding another sequence containing the same type.
+@['x', 'y', 'z']
+@['1', '2', '3', 'x', 'y', 'z']
+Trying to pass different types to the existing sequences will produce an error:
+
+var i = @[9, 8, 7]
+
+i.add(9.81) # error 
+g.add(i)    # error 
+Trying to add a float to a sequence of int.
+Trying to add a sequence of int to a sequence of char.
+Since sequences can vary in length we need a way to get their length, for this we can use the len function.
+
+var i = @[9, 8, 7]
+echo i.len
+
+i.add(6)
+echo i.len
+3
+4
+Indexing and slicing
+Indexing allows us to get a specific element from a container by its index. Think of the index as a position inside of the container.
+
+Nim, like many other programming languages, has zero-based indexing, meaning that the first element in a container has the index zero, the second element has the index one, etc.
+
+If we want to index "from the back", it is done by using the ^ prefix. The last element (first from the back) has index ^1.
+
+The syntax for indexing is <container>[<index>].
+
+indexing.nim
+let j = ['a', 'b', 'c', 'd', 'e']
+
+echo j[1]   
+echo j[^1]  
+Zero-based indexing: the element at index 1 is b.
+Getting the last element.
+b
+e
+ 
+
+Slicing allows us to get a series of elements with one call. It uses the same syntax as ranges (introduced in the for loop section).
+
+If we use start .. stop syntax, both ends are included in the slice. Using start ..< stop syntax, the stop index is not included in the slice.
+
+The syntax for slicing is <container>[<start> .. <stop>].
+
+indexing.nim
+echo j[0 .. 3]
+echo j[0 ..< 3]
+@[a, b, c, d]
+@[a, b, c]
+Both indexing and slicing can be used to assign new values to the existing mutable containers and strings.
+
+assign.nim
+var
+  k: array[5, int]
+  l = @['p', 'w', 'r']
+  m = "Tom and Jerry"
+
+for i in 0 .. 4:  
+  k[i] = 7 * i
+echo k
+
+l[1] = 'q'        
+echo l
+
+m[8 .. 9] = "Ba"  
+echo m
+Array of length 5 has indexes from zero to four. We will assign a value to each element of the array.
+Assigning (changing) the second element (index 1) of a sequence.
+Changing characters of a string at indexes 8 and 9.
+[0, 7, 14, 21, 28]
+@['p', 'q', 'r']
+Tom and Barry
+Tuples
+Both of the containers we’ve seen so far have been homogeneous. Tuples, on the other hand, contain heterogeneous data, i.e. elements of a tuple can be of different types. Similarly to arrays, tuples have fixed-size.
+
+The elements of a tuple are enclosed inside of parentheses.
+
+tuples.nim
+let n = ("Banana", 2, 'c')  
+echo n
+Tuples can contain fields of different types. In this case: string, int, and char.
+(Field0: "Banana", Field1: 2, Field2: 'c')
+We can also name each field in a tuple to distinguish them. This can be used for accessing the elements of the tuple, instead of indexing.
+
+tuples.nim
+var o = (name: "Banana", weight: 2, rating: 'c')
+
+o[1] = 7          
+o.name = "Apple"  
+echo o
+Changing the value of a field by using the field’s index.
+Changing the value of a field by using the field’s name.
+(name: "Apple", weight: 7, rating: 'c')
