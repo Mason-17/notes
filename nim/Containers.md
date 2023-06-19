@@ -4,7 +4,6 @@ Containers are data types which contain a collection of items and allow us to ac
 For example, a grocery list is a container of items we want to buy, and a list of primes is a container of numbers. Written in pseudocode:
 
 ```
-
 groceryList = [ham, eggs, bread, apples]
 primes = [1, 2, 3, 5, 7]
 ```
@@ -12,25 +11,31 @@ primes = [1, 2, 3, 5, 7]
 Arrays
 An array is the simplest container type. Arrays are homogeneous, i.e. all elements in an array must have the same type. Arrays are also of a constant size, meaning that the amount of elements (or rather: the amount of possible elements), must be known at compile-time. This means that we call arrays a "homogeneous container of a constant length".
 
-The array type is declared using array[<length>, <type>], where length is the total capacity of the array (number of elements it can fit), and type is a type of all its elements. The declaration can be omitted if both length and type can be inferred from the passed elements.
+The array type is declared using `array[<length>, <type>]`, where length is the total capacity of the array (number of elements it can fit), and type is a type of all its elements. The declaration can be omitted if both length and type can be inferred from the passed elements.
 
 The elements of an array are enclosed inside of square brackets.
 
+```
 var
   a: array[3, int] = [5, 7, 9]
   b = [5, 7, 9]        
   c = []  # error      
-  d: array[7, string]  
+  d: array[7, string]
+```
 If we provide the values, the length and type of array b are known at compile time. Although correct, there is no need to specifically declare it like array a.
 Neither the length nor the type of the elements can be inferred from this kind of declaration — this produces an error.
 The correct way to declare an empty array (which will be filled later) is to give its length and type, without providing the values of its elements — array d can contain seven strings.
 Since the length of an array has to be known at compile-time, this will not work:
 
+```
 const m = 3
 let n = 5
+```
 
+```
 var a: array[m, char]
 var b: array[n, char] # error 
+```
 This produces an error because n is declared using let — its value is not known at compile time. We can only use values declared with const as a length parameter for an array initialization.
 Sequences
 Sequences are containers similar to arrays, but their length doesn’t have to be known at compile time, and it can change during runtime: we declare only the type of the contained elements with seq[<type>]. Sequences are also homogeneous, i.e. every element in a sequence has to be the same type.
