@@ -8,6 +8,10 @@ When declaring variables, there are two primary kinds:
 Mutable variables can be declared like so:
 ```
 var <variable> = <value>
+OR
+var <variable>: <type>
+OR
+var <variable>: <type> = <value>
 ```
 Or as a block:
 ```
@@ -15,3 +19,5 @@ var
     <variable> = <value>
     <variable> = <value>
 ```
+
+# 
