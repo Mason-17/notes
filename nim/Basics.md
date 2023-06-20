@@ -3,7 +3,9 @@
 When declaring variables, there are two primary kinds:
     - mutable (can change)
 
-    - immutable (cannot change, similar to a constant)
+    - immutable. Can't change, has two types:
+        - Constant (const)
+        - let
 
 Mutable variables can be declared like so:
 ```
@@ -20,4 +22,8 @@ var
     <variable> = <value>
 ```
 
-# 
+Immutable Variables can be declared as follows:
+```
+const <name> = <value>
+OR
+let <name> = <value>
